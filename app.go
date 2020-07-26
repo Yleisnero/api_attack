@@ -6,14 +6,20 @@ import (
 	"net/http"
 	"os"
 	"sync"
+	"strconv"
 )
 
 func main() {
 	host := os.Args[1]
+	workers, err := strconv.Atoi(os.Args[2])
+
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	var wg sync.WaitGroup
 
-	for i := 0; i < 8; i++ {
+	for i := 0; i < workers; i++ {
 		fmt.Println("Starting Worker", i)
 		wg.Add(1)
 		go worker(&wg, i, host)
