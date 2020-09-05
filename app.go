@@ -10,11 +10,27 @@ import (
 )
 
 func main() {
-	host := os.Args[1]
-	workers, err := strconv.Atoi(os.Args[2])
+	argsLength := len(os.Args)
 
-	if err != nil {
-		fmt.Println(err)
+	var host string
+	var workers int
+
+	if argsLength > 1 {
+		host = os.Args[1]
+	} else {
+		fmt.Println("Error: No hostname provided. Add hostname as first argument.")
+		os.Exit(1)
+	}
+
+	if argsLength > 2 {
+		wrks, err := strconv.Atoi(os.Args[2])
+		workers = wrks
+		if err != nil {
+			fmt.Println(err)
+		}
+	} else {
+		fmt.Println("Error: No number of workers (threads) provided. Add number of workers as second argument.")
+		os.Exit(1)
 	}
 
 	var wg sync.WaitGroup
@@ -31,7 +47,8 @@ func main() {
 }
 
 func worker(wg *sync.WaitGroup, id int, host string) {
-	for i := 0; i < 10000; i++ {
+	// Workers will run forever
+	for {
 		resp, err := http.Get(host)
 		if err != nil {
 			fmt.Println(err)
