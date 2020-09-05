@@ -29,7 +29,7 @@ func main() {
 			fmt.Println(err)
 		}
 	} else {
-		fmt.Println("Error: No number of workers (threads) provided. Add number of workers as seconde argument.")
+		fmt.Println("Error: No number of workers (threads) provided. Add number of workers as second argument.")
 		os.Exit(1)
 	}
 
@@ -47,7 +47,8 @@ func main() {
 }
 
 func worker(wg *sync.WaitGroup, id int, host string) {
-	for i := 0; i < 10000; i++ {
+	// Workers will run forever
+	for {
 		resp, err := http.Get(host)
 		if err != nil {
 			fmt.Println(err)
