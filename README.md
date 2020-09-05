@@ -1,6 +1,6 @@
-**# GO script for a basic ddos**
+# GO script for a basic ddos
 
-**USE THIS SCRIPT ONLY ON YOUR OWN SERVERS, DO NOT ENTER ANY DOMAIN YOU DON'T OWN**
+**USE THIS SCRIPT ONLY ON YOUR OWN SERVERS, DO NOT ENTER ANY DOMAIN YOU DON'T OWN!**
 
 ### How to use
 
